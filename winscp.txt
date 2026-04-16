@@ -1,0 +1,4 @@
+open sftp://stu130782241:Rqhpc4V7cZuW@510402631.ssh.w1.strato.hosting
+get webcam_1/current.jpg cam1.jpg
+get webcam_2/current.jpg cam2.jpg
+exit

@@ -1,19 +1,23 @@
 @echo off
+cd /d C:\kams-demo\kams
+
 :loop
 
-echo Descargando imagenes desde SFTP...
+echo ==========================
+echo Descargando desde SFTP...
+echo ==========================
 
-winscp.com /command ^
-"open sftp://stu130782241:Rqhpc4V7cZuW@510402631.ssh.w1.strato.hosting" ^
-"get webcam_1/current.jpg cam1.jpg" ^
-"get webcam_2/current.jpg cam2.jpg" ^
-"exit"
+"C:\Program Files (x86)\WinSCP\WinSCP.com" /script=winscp.txt
 
-echo Actualizando GitHub...
+echo ==========================
+echo Subiendo a GitHub...
+echo ==========================
 
-git add .
-git commit -m "update cam"
+git add cam1.jpg cam2.jpg
+git commit -m "update cameras"
 git push
 
+echo Esperando 5 segundos...
 timeout /t 5 >nul
+
 goto loop
