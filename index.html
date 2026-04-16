@@ -44,6 +44,7 @@ font-size:14px;
 }
 </style>
 </head>
+
 <body>
 
 <h1>📷 LF ELEKTRO CCTV DEMO</h1>
@@ -66,18 +67,18 @@ font-size:14px;
 
 <script>
 function actualizar(){
-let t = new Date().getTime();
+let t = Date.now(); // más estable que new Date().getTime()
 
-document.getElementById("cam1").src="cam1.jpg?"+t;
-document.getElementById("cam2").src="cam2.jpg?"+t;
+document.getElementById("cam1").src = "cam1.jpg?v=" + t;
+document.getElementById("cam2").src = "cam2.jpg?v=" + t;
 
 let hora = new Date().toLocaleTimeString();
 
-document.getElementById("t1").innerHTML="Actualizado: "+hora;
-document.getElementById("t2").innerHTML="Actualizado: "+hora;
+document.getElementById("t1").innerHTML = "Actualizado: " + hora;
+document.getElementById("t2").innerHTML = "Actualizado: " + hora;
 }
 
-setInterval(actualizar,5000);
+setInterval(actualizar, 5000);
 actualizar();
 </script>
 
