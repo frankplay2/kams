@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cámaras Demo</title>
 
+<!-- Evitar cache -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <style>
 body{
 margin:0;
@@ -41,6 +46,7 @@ border-radius:10px;
 .time{
 color:#0f0;
 font-size:14px;
+margin-top:5px;
 }
 </style>
 </head>
@@ -67,15 +73,26 @@ font-size:14px;
 
 <script>
 function actualizar(){
-let t = Date.now(); // más estable que new Date().getTime()
 
-document.getElementById("cam1").src = "cam1.jpg?v=" + t;
-document.getElementById("cam2").src = "cam2.jpg?v=" + t;
+let t = Date.now();
 
+const cam1 = document.getElementById("cam1");
+const cam2 = document.getElementById("cam2");
+
+// FORZAR reload real
+cam1.src = "";
+cam2.src = "";
+
+setTimeout(() => {
+    cam1.src = "cam1.jpg?v=" + t;
+    cam2.src = "cam2.jpg?v=" + t;
+}, 50);
+
+// tiempo
 let hora = new Date().toLocaleTimeString();
-
 document.getElementById("t1").innerHTML = "Actualizado: " + hora;
 document.getElementById("t2").innerHTML = "Actualizado: " + hora;
+
 }
 
 setInterval(actualizar, 5000);
